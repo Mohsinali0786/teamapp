@@ -5,7 +5,7 @@ import SignupForm from './screen/signup';
 function App() {
   return (
     <div className="App">
-      <SignupForm/>
+      {/* <SignupForm/> */}
     </div>
   );
 }
