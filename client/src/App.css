@@ -1,38 +1,139 @@
-.App {
+/* classes  */
+
+/* signup-form-css */
+.signupScreen-mainDiv {
+  display: flex;
+  justify-content: space-around;
+}
+
+.signupscreen-form {
+  margin-top: 50px;
+  margin-left: 30px;
+  width: 45%;
+}
+
+.signupscreen-form>h3 {
+  /* text-align: center; */
+  font-size: 2vw;
+  margin-bottom: 50px;
+  font-weight: bold;
+}
+
+.ant-col-sm-8 {
+  text-align: left !important;
+}
+
+.myform div {
+  display: block;
+}
+
+.signupform-icon-div {
+  position: relative;
+  top: 40px;
+  left: 10px;
+  z-index: 1;
+  font-size: 25px !important;
+}
+
+.ant-form-item-required {
+  font-size: 20px !important;
+}
+
+.signup-form-inputs {
+  padding-left: 40px !important;
+  height: 40px !important;
+}
+
+/* ids */
+#signuppage-img {
+  width: 45%;
+  height: 100vh;
+  border-radius: 0px 50px 0px 0px;
+}
+
+/* .ant-col-sm-16{
+  min-width: 50% !important;
+} */
+
+@media only screen and (max-width: 500px) {
+  #signuppage-img {
+    display: none;
+  }
+
+  .signupscreen-form>h3 {
+    font-size: 20px;
+  }
+
+  .signupscreen-form {
+    border: 1px solid black;
+    padding: 2% 5%;
+    width: 90%;
+    border-radius: 20px;
+    margin-left: 0;
+    margin: 5px;
+  }
+
+  .signupscreen-form>h3 {
+    text-align: center;
+  }
+
+}
+
+
+/* Register-Btn CSS  */
+.registerbtn {
+  background-color: #013360 !important;
+  width: 70%;
+  border-radius: 3px !important;
+  font-size: large !important;
+  height: fit-content !important;
+}
+
+.ant-col-sm-offset-8 {
+  margin-left: 0px !important;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Signin-Screen CSS */
+.signin-screen-maindiv {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-around;
 }
 
-.App-link {
-  color: #61dafb;
+.signin-image {
+  width: 150px;
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.signinscreen-form {
+  margin-top: 50px;
+  margin-left: 30px;
+  width: 50%;
+  text-align: center;
+}
+
+.signinscreen-form>h3 {
+  /* text-align: center; */
+  font-size: 2vw;
+  margin-bottom: 50px;
+  font-weight: bold;
+}
+
+.signinform-icon-div {
+  position: absolute;
+  top: 7px;
+  left: 10px;
+  z-index: 1;
+  font-size: 25px !important;
+}
+
+/* login-Btn CSS  */
+
+.loginbtn {
+  background-color: #013360 !important;
+  width: 30%;
+  border-radius: 3px !important;
+  font-size: large !important;
+  height: fit-content !important;
 }
