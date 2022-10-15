@@ -3,6 +3,7 @@ import { useState } from 'react';
 import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
+import { useDispatch } from 'react-redux';
 
 const formItemLayout = {
   labelCol: {
@@ -34,24 +35,36 @@ const tailFormItemLayout = {
     },
   },
 };
+
+const validateMessages = {
+  required: '${label} is required!',
+  types: {
+    email: '${label} is not a valid email!',
+    number: '${label} is not a valid number!',
+  },
+};
 const SignupForm = () => {
-  const [form] = Form.useForm();
-  const [name, setName] = useState()
+  const [userdata, setuserdata] = useState({})
+  const dispatch=useDispatch()
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
   };
+  const handleform = (e) => {
+    setuserdata({...userdata,[e.target.name]:e.target.value})
+
+  }
+
+  console.log('userdata',userdata)
 
   return (
     <Form
       {...formItemLayout}
-      form={form}
+      
       name="register"
       onFinish={onFinish}
-      initialValues={{
-        residence: ['zhejiang', 'hangzhou', 'xihu'],
-        prefix: '86',
-      }}
-      scrollToFirstError
+      validateMessages={validateMessages}
+
+
       className='myform'
     >
       <Form.Item
@@ -64,7 +77,7 @@ const SignupForm = () => {
         ]}
       >
         <PersonIcon className='signupform-icon-div' />
-        <Input className='signup-form-inputs'  onChange={(e) => { setName(e.target.value) }} />
+        <Input className='signup-form-inputs' name='name'  onChange={(e) => { handleform(e) }} />
       </Form.Item>
 
       <Form.Item
@@ -74,16 +87,16 @@ const SignupForm = () => {
           {
             type: 'email',
             message: 'The input is not valid E-mail!',
-          },
-          {
             required: true,
             message: 'Please input your E-mail!',
+          },
+          {
           },
         ]}
       >
         <EmailIcon className='signupform-icon-div' />
 
-        <Input className='signup-form-inputs' />
+        <Input className='signup-form-inputs' name='email'  onChange={(e) => { handleform(e) }} />
       </Form.Item>
 
       <Form.Item
@@ -98,7 +111,7 @@ const SignupForm = () => {
       >
           <LockIcon className='signupform-icon-div'/>
 
-        <Input className='signup-form-inputs' />
+        <Input className='signup-form-inputs' name='password'  onChange={(e) => { handleform(e) }} />
       </Form.Item>
 
       <Form.Item
