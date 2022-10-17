@@ -1,0 +1,53 @@
+import { Space, Table, Tag } from 'antd';
+import React from 'react';
+const { Column, ColumnGroup } = Table;
+const data = [
+  {
+    key: '1',
+    firstName: 'John',
+    lastName: 'Brown',
+    age: 32,
+    address: 'New York No. 1 Lake Park',
+    tags: ['nice', 'developer'],
+  },
+  {
+    key: '2',
+    firstName: 'Jim',
+    lastName: 'Green',
+    age: 42,
+    address: 'London No. 1 Lake Park',
+    tags: ['loser'],
+  },
+  {
+    key: '3',
+    firstName: 'Joe',
+    lastName: 'Black',
+    age: 32,
+    address: 'Sidney No. 1 Lake Park',
+    tags: ['cool', 'teacher'],
+  },
+];
+const MyTeam = () => (
+  <Table dataSource={data}>
+    <ColumnGroup >
+      <Column title="Team " dataIndex="firstName" key="firstName" />
+      <Column title="Email" dataIndex="lastName" key="lastName" />
+    </ColumnGroup>
+    {/* <Column title="Age" dataIndex="age" key="age" />
+    <Column title="Address" dataIndex="address" key="address" /> */}
+
+    <Column
+      title="Action"
+      key="action"
+      render={(_, record) => (
+        <Space size="middle">
+          {/* <a>Invite {record.lastName}</a> */}
+          <a>Delete</a>
+          <a>Edit</a>
+          
+        </Space>
+      )}
+    />
+  </Table>
+);
+export default MyTeam;
