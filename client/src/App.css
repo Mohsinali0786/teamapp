@@ -21,6 +21,7 @@
 
 .ant-col-sm-8 {
   text-align: left !important;
+  max-width:100% !important;
 }
 
 .myform div {

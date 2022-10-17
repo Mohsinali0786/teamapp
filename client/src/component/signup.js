@@ -7,6 +7,10 @@ import { useDispatch } from 'react-redux';
 import allPaths from '../config/path'
 import { Sign_Up } from '../store/actions';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import {AUTH} from '../utils/api'
+import Swal from "sweetalert2";
+
 
 const formItemLayout = {
   labelCol: {
@@ -52,14 +56,36 @@ const SignupForm = () => {
   const Navigate=useNavigate()
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
-    dispatch(Sign_Up(values))
-    Navigate('/home')
+    // dispatch(Sign_Up(values))
+    console.log('AUTH?.USERSIGNUP',AUTH)
+    axios.post(`http://localhost:4000${AUTH.USERSIGNUP}`,values)
+    .then((res) => {
+      console.log("res.data?.status", res.data);
+      if (res.data?.status === "success") {
+        Swal.fire({
+          icon: res.data.status,
+          text: res.data.message,
+        });
+      } 
+      else {
+        Swal.fire({
+          icon: res.data.status,
+          text: res.data.message,
+        });
+      }
+    })
+    .catch((error) => {
+      alert("Ohh Error Occured");
+      console.log(error, "=error=");
+    });
+
   }
+  // Navigate('/home')
  
 
   return (
     <Form
-      {...formItemLayout}
+    {...formItemLayout}
 
       name="register"
       onFinish={onFinish}
