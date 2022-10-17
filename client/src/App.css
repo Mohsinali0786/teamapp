@@ -15,7 +15,7 @@
 .signupscreen-form>h3 {
   /* text-align: center; */
   font-size: 2vw;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   font-weight: bold;
 }
 
@@ -29,11 +29,11 @@
 }
 
 .signupform-icon-div {
-  position: relative;
-  top: 40px;
-  left: 10px;
+  position: absolute;
+  top: 10px;
+  left: 5px;
   z-index: 1;
-  font-size: 25px !important;
+  font-size: 22px !important;
 }
 
 .ant-form-item-required {
@@ -43,6 +43,10 @@
 .signup-form-inputs {
   padding-left: 40px !important;
   height: 40px !important;
+  
+}
+.iconwithinput{
+  display: flex;
 }
 
 /* ids */

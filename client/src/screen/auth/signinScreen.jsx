@@ -13,7 +13,7 @@ export default function SigninScreen() {
                 <img src={signup_screen_img} id='signuppage-img' />
                 <div className='signinscreen-form'>
                     <img src={Signin_Image} className='signin-image' />
-                    <h3>Login</h3>s
+                    <h3>Login</h3>
                     <SigninForm />
                     <p>Not have an account <Link to='/signupform'>click Here</Link> for SignUp</p>
                     

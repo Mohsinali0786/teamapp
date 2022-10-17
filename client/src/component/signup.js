@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {AUTH} from '../utils/api'
 import Swal from "sweetalert2";
+import { Link } from 'react-router-dom';
 
 
 const formItemLayout = {
@@ -103,7 +104,7 @@ const SignupForm = () => {
           },
         ]}
       >
-        <div>
+        <div className='iconwithinput'>
           <PersonIcon className='signupform-icon-div' />
           <Input className='signup-form-inputs' name='name' />
         </div>
@@ -123,7 +124,7 @@ const SignupForm = () => {
           },
         ]}
       >
-        <div>
+        <div className='iconwithinput'>
           <EmailIcon className='signupform-icon-div' />
           <Input className='signup-form-inputs' name='email' />
         </div>
@@ -139,7 +140,7 @@ const SignupForm = () => {
           },
         ]}
       >
-        <div>
+        <div className='iconwithinput'>
           <LockIcon className='signupform-icon-div' />
           <Input className='signup-form-inputs' name='password' />
         </div>
@@ -176,6 +177,7 @@ const SignupForm = () => {
           Register
         </Button>
       </Form.Item>
+      <p>Already have account then<Link to='/'> Click here</Link></p>
     </Form>
   );
 };
