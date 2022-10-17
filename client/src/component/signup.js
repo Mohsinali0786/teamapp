@@ -4,6 +4,9 @@ import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 import { useDispatch } from 'react-redux';
+import allPaths from '../config/path'
+import { Sign_Up } from '../store/actions';
+import { useNavigate } from 'react-router-dom';
 
 const formItemLayout = {
   labelCol: {
@@ -45,21 +48,19 @@ const validateMessages = {
 };
 const SignupForm = () => {
   const [userdata, setuserdata] = useState({})
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
+  const Navigate=useNavigate()
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
-  };
-  const handleform = (e) => {
-    setuserdata({...userdata,[e.target.name]:e.target.value})
-
+    dispatch(Sign_Up(values))
+    Navigate('/home')
   }
-
-  console.log('userdata',userdata)
+ 
 
   return (
     <Form
       {...formItemLayout}
-      
+
       name="register"
       onFinish={onFinish}
       validateMessages={validateMessages}
@@ -76,8 +77,10 @@ const SignupForm = () => {
           },
         ]}
       >
-        <PersonIcon className='signupform-icon-div' />
-        <Input className='signup-form-inputs' name='name'  onChange={(e) => { handleform(e) }} />
+        <div>
+          <PersonIcon className='signupform-icon-div' />
+          <Input className='signup-form-inputs' name='name' />
+        </div>
       </Form.Item>
 
       <Form.Item
@@ -94,9 +97,10 @@ const SignupForm = () => {
           },
         ]}
       >
-        <EmailIcon className='signupform-icon-div' />
-
-        <Input className='signup-form-inputs' name='email'  onChange={(e) => { handleform(e) }} />
+        <div>
+          <EmailIcon className='signupform-icon-div' />
+          <Input className='signup-form-inputs' name='email' />
+        </div>
       </Form.Item>
 
       <Form.Item
@@ -109,9 +113,10 @@ const SignupForm = () => {
           },
         ]}
       >
-          <LockIcon className='signupform-icon-div'/>
-
-        <Input className='signup-form-inputs' name='password'  onChange={(e) => { handleform(e) }} />
+        <div>
+          <LockIcon className='signupform-icon-div' />
+          <Input className='signup-form-inputs' name='password' />
+        </div>
       </Form.Item>
 
       <Form.Item
@@ -122,7 +127,7 @@ const SignupForm = () => {
         rules={[
           {
             required: true,
-            message: 'Please confirm your password!',
+            // message: 'Please confirm your password!',
           },
           ({ getFieldValue }) => ({
             validator(_, value) {
@@ -134,8 +139,11 @@ const SignupForm = () => {
           }),
         ]}
       >
-          <LockIcon className='signupform-icon-div'/>
-        <Input className='signup-form-inputs' />
+        <div>
+          <LockIcon className='signupform-icon-div' />
+          <Input className='signup-form-inputs' />
+        </div>
+
       </Form.Item>
       <Form.Item {...tailFormItemLayout}>
         <Button type="primary" htmlType="submit" className='registerbtn'>

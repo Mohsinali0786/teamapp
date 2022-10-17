@@ -1,5 +1,5 @@
-import SignupForm from "../component/signup";
-import signup_screen_img from '../assets/image1.jpg'
+import SignupForm from "../../component/signup";
+import signup_screen_img from '../../assets/image1.jpg'
 import { Grid,Box } from '@mui/material';
 export default function SignupScreen() {
     return (

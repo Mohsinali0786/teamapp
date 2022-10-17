@@ -1,6 +1,8 @@
-import SigninForm from "../component/signin"
-import Signin_Image from '../assets/loginimage.png'
-import signup_screen_img from '../assets/image1.jpg'
+import SigninForm from "../../component/signin"
+import Signin_Image from '../../assets/loginimage.png'
+import signup_screen_img from '../../assets/image1.jpg'
+import { Link } from "react-router-dom"
+
 
 export default function SigninScreen() {
 
@@ -13,7 +15,9 @@ export default function SigninScreen() {
                     <img src={Signin_Image} className='signin-image' />
                     <h3>Login</h3>s
                     <SigninForm />
-                <p>Not have an account <a>click Here</a> for SignUp</p>
+                    <p>Not have an account <Link to='/signupform'>click Here</Link> for SignUp</p>
+                    
+                
                 </div>
             </div>
         </>
