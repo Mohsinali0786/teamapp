@@ -29,6 +29,30 @@ const registerUser = async (req,res)=>{
         console.log('err', err)
     }
 }
+
+const loginUser = async(req,res)=>{
+    const {email, password } = req.body
+
+    let userExist = await User.findOne({ email})
+
+    if (userExist) {
+        const mypassword = await bcrypt.compare(password, userExist?.password)
+        if (mypassword) {
+            res.send({ status: 'success', message: 'Congratulation You Successfully Login !' })
+        }
+        else {
+            res.send({
+                status: 'error', message: 'Incorrect Password'
+            })
+        }
+    }
+    else {
+        res.send({ status: 'error', message: 'User not exist please contact your admin' })
+    }
+
+
+}
 module.exports={
     registerUser,
+    loginUser,
 }

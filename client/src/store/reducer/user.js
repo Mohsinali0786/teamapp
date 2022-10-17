@@ -1,17 +1,22 @@
-import { REGISTER, REGISTERCOMPANY, LOGININ, LOGOUT, DELETE, EDIT, ADDDATE } from '../type'
+import { REGISTER, REGISTERCOMPANY, LOGIN, LOGOUT, DELETE, EDIT, ADDDATE } from '../type'
 
 const initialState = {
 
-    Users: [],
+    LoginUser: {}
 }
 
 const AllUsers = (state = initialState, action) => {
     switch (action.type) {
 
-        case REGISTER:
+        case LOGIN:
             return {
                 ...state,
-                Users: [...state.Users, action.payload],
+                LoginUser: action.payload
+            }
+        case LOGOUT:
+            return {
+                ...state,
+                LoginUser: action.payload
             }
 
         default: return state

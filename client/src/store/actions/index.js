@@ -1,10 +1,16 @@
-import { REGISTER, REGISTERCOMPANY, LOGININ, LOGOUT, DELETE, EDIT, ADDDATE } from '../type'
+import { REGISTER, REGISTERCOMPANY, LOGIN, LOGOUT, DELETE, EDIT, ADDDATE } from '../type'
 
-export const Sign_Up = (data) => async (dispatch) => {
+export const user_login = (data) => async (dispatch) => {
     console.log("SignU Data", data)
     dispatch({
-        type: REGISTER,
-        payload: data
+        type: LOGIN,
+        payload: {data,isloggedin:true}
     })
     // localStorage.setItem('Users', JSON.stringify(getState()))
+}
+export const logout=(dispatch)=>{
+    dispatch({
+        type: LOGOUT,
+        payload: {isloggedin:false}
+    })
 }

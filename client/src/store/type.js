@@ -1,10 +1,10 @@
 const REGISTER = 'REGISTER'
-const LOGININ = 'LOGININ'
+const LOGIN = 'LOGIN'
 const LOGOUT = 'LOGOUT'
 
 
 export {
     REGISTER,
-    LOGININ,
+    LOGIN,
     LOGOUT,
 }
