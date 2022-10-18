@@ -153,3 +153,11 @@
   bottom: 100px;
   right:50px
 }
+.ant-table-tbody  {
+  height: 2px !important; 
+  padding: 4px !important;
+ 
+}
+.tablediv{
+  height: 2px !important;
+}

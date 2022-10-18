@@ -11,10 +11,8 @@ const registerUser = async (req,res)=>{
 
         if (UserExist) {
             res.send({ status: 'error', message: 'This email is already exists' })
-
         }
         else{
-
             await User.create({
                 name,
                 email,

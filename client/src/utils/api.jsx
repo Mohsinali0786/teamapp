@@ -1,5 +1,7 @@
 const authApi = '/api/auth/';
 const postApi = '/api/post/';
+const getApi = '/api/get/';
+
 
 
 const AUTH={
@@ -7,7 +9,11 @@ const AUTH={
     USERLOGIN:`${authApi}/login`
 }
 const POST={
-    ADDTEAM:`${postApi}/addteam`
+    ADDTEAM:`${postApi}/addteam`,
+    DELETETEAM:`${postApi}/deleteteam`
+}
+const GET={
+    GETTEAM:`${getApi}/getteam`
 }
 
-export {AUTH,POST}
+export {AUTH,POST,GET}

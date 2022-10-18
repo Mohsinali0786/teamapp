@@ -1,4 +1,4 @@
-import { REGISTER, REGISTERCOMPANY, LOGIN, LOGOUT, DELETE, EDIT, ADDDATE } from '../type'
+import { REGISTER, REGISTERCOMPANY, LOGIN, LOGOUT, DELETE, EDIT, ADDDATE,GETTEAMS } from '../type'
 
 export const user_login = (data) => async (dispatch) => {
     console.log("SignU Data", data)
@@ -12,5 +12,12 @@ export const logout=(dispatch)=>{
     dispatch({
         type: LOGOUT,
         payload: {isloggedin:false}
+    })
+}
+export const getTeams=(data) => async (dispatch) =>{
+    console.log('data from actios',data)
+    dispatch({
+        type:GETTEAMS,
+        payload:data
     })
 }
