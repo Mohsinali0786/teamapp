@@ -15,7 +15,7 @@ export const logout=(dispatch)=>{
     })
 }
 export const getTeams=(data) => async (dispatch) =>{
-    console.log('data from actios',data)
+    // console.log('data from actios',data)
     dispatch({
         type:GETTEAMS,
         payload:data

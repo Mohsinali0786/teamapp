@@ -21,6 +21,7 @@ const AllUsers = (state = initialState, action) => {
             }
 
         case GETTEAMS:
+            // console.log('reduce getteam',action.payload)
             return {
                 ...state,
                 MyTeams: action.payload

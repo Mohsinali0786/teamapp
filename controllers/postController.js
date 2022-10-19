@@ -32,7 +32,7 @@ const addTeam = async (req, res) => {
 
 const deleteTeam = async (req, res) => {
     try {
-        // const AllTeams = await Team.find({})
+        const AllTeams = await Team.find({})
 
         const deleteTeam = await Team.findByIdAndUpdate(req.params.id,{
             isDeleted:true,
@@ -41,7 +41,7 @@ const deleteTeam = async (req, res) => {
             res.send({
                 status: 'success',
                 message: 'Your team deleted successfully',
-                // AllTeams,
+                AllTeams,
             })
         }
         else {

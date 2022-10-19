@@ -6,8 +6,8 @@ const userRoutes = require('./routes')
 const dotenv = require('dotenv')
 
 app.use(express.json());
-
 dotenv.config({ path: "./config/config.env" })
+
 
 mongoose.connect(process.env.DB_URI)
     .then(() => {

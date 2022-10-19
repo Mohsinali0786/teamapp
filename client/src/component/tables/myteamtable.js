@@ -14,24 +14,28 @@ export default function MyTeam() {
   
   const dispatch = useDispatch()
   const dataRedux = useSelector((state) => state.AllUsers)
+  console.log('data Redux',dataRedux)
   let myTeam = dataRedux?.MyTeams
-  myTeam=myTeam.filter((teams,index)=>teams.isDeleted===false)
-
-  console.log('data in table', myTeam)
+  // console.log('++>>',dataRedux?.LoginUser?.data?.email)
+  myTeam=myTeam.filter((teams,index)=>teams?.isDeleted===false&& teams?.useremail===dataRedux?.LoginUser?.data.email)
+  console.log('myteam',myTeam)
+  // console.log('data in table', myTeam)
   useEffect(()=>{
+    console.log('use effect')
     setdeletedbtn(false)
   },[deletedbtn===true])
   const deletedata=(index)=>{
-    setdeletedbtn(true)
     axios.post(`http://localhost:4000${POST?.DELETETEAM}/${index}`)
     .then((res) => {
-      console.log('====>',res.data.AllTeams)
+      console.log('====>',res.data)
       if (res.data?.status === "success") {
         Swal.fire({
           icon: res.data.status,
           text: res.data.message,
         });
+        setdeletedbtn(true)
         dispatch(getTeams(res.data.AllTeams))
+        //after delete get team
       }
       else {
         Swal.fire({

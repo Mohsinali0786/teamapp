@@ -1,5 +1,5 @@
 const moongoose=require('mongoose')
-const { STRING_REQUIRED, STRING, BOOLEAN_DEFAULT } = require('./SchemaTypes')
+const { STRING_REQUIRED, STRING, BOOLEAN_DEFAULT } = require('./schematypes')
 
 const teamSchema=moongoose.Schema({
     teamname:STRING_REQUIRED,
