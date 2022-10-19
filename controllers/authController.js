@@ -1,4 +1,4 @@
-const User=require('../models/usermodel')
+const {usermodel}=require('../models')
 const bcrypt=require('bcryptjs')
 
 const registerUser = async (req,res)=>{
@@ -7,13 +7,13 @@ const registerUser = async (req,res)=>{
         let { name,email,password} = req.body
         const salt = await bcrypt.genSalt(10);
         password = await bcrypt.hash(password, salt);
-        const UserExist = await User.findOne({ email})
+        const UserExist = await usermodel.findOne({ email})
 
         if (UserExist) {
             res.send({ status: 'error', message: 'This email is already exists' })
         }
         else{
-            await User.create({
+            await usermodel.create({
                 name,
                 email,
                 password,
@@ -33,7 +33,7 @@ const registerUser = async (req,res)=>{
 const loginUser = async(req,res)=>{
     const {email, password } = req.body
 
-    let userExist = await User.findOne({ email})
+    let userExist = await usermodel.findOne({ email})
 
     if (userExist) {
         const mypassword = await bcrypt.compare(password, userExist?.password)

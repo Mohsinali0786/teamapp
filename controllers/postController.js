@@ -1,16 +1,25 @@
-const Team = require('../models/teammodel')
-
+const { teammodel, membersmodel } = require('../models')
 const addTeam = async (req, res) => {
 
     const { teamname, teamemail, useremail } = req.body
     try {
-        const TeamExists = await Team.findOne({ teamemail })
+        const TeamExists = await teammodel.findOne({ teamemail, useremail })
         if (TeamExists) {
-            res.send({ status: 'error', message: 'This team is already exists' })
+            if (TeamExists.isDeleted !== true) {
+                res.send({ status: 'error', message: 'This team is already exists' })
+            }
+            else {
+                await TeamExists.updateOne({
+                    isDeleted: false,
+                }).then(() => {
+                    res.send({ status: 'success', message: 'Congratulations Team added successfully' })
+                }).catch((err) => {
+                    console.log('err', err)
+                })
+            }
         }
         else {
-
-            await Team.create({
+            await teammodel.create({
                 teamname,
                 teamemail,
                 useremail,
@@ -32,12 +41,12 @@ const addTeam = async (req, res) => {
 
 const deleteTeam = async (req, res) => {
     try {
-        const AllTeams = await Team.find({})
+        const AllTeams = await teammodel.find({})
 
-        const deleteTeam = await Team.findByIdAndUpdate(req.params.id,{
-            isDeleted:true,
+        const deleteTeam = await teammodel.findByIdAndUpdate(req.params.id, {
+            isDeleted: true,
         })
-        if(deleteTeam){
+        if (deleteTeam) {
             res.send({
                 status: 'success',
                 message: 'Your team deleted successfully',
@@ -48,15 +57,79 @@ const deleteTeam = async (req, res) => {
             res.send({
                 status: 'error',
                 // message: 'Admin are not deleteable',
-        })
-    }
+            })
+        }
         // console.log('deleteTeam',deleteTeam)
     }
     catch (err) {
         console.log('err', err)
     }
 }
+const addMember = async (req, res) => {
+
+    console.log('body',req.body)
+    try {
+        const { memberEmail, teamname,teamowner } = req.body
+        const MemberExists = await membersmodel.findOne({ memberEmail, teamname })
+        if (MemberExists) {
+            if (MemberExists.isDeleted !== true) {
+                res.send({ status: 'error', message: 'This team is already exists' })
+            }
+            else {
+                await MemberExists.updateOne({
+                    isDeleted: false,
+                }).then(() => {
+                    res.send({ status: 'success', message: 'Congratulations Team added successfully' })
+                }).catch((err) => {
+                    console.log('err', err)
+                })
+            }
+        }
+        else {
+            await membersmodel.create({
+                teamname,
+                memberEmail,
+                teamowner,
+                isDeleted: false,
+                isEditable: false
+            }).then(() => {
+                res.send({ status: 'success', message: 'Congratulations Member added successfully' })
+            }).catch((err) => {
+                console.log('err', err)
+
+            })
+        }
+
+    }
+    catch (err) {
+        console.log('err', err)
+    }
+}
+const getlogginPerson_TeamMember= async(req,res)=>{
+
+    const {email}=req.body
+    let memberEmail=email
+    console.log('req.body',req.body)
+    try{
+        const Members_in_Teams = await membersmodel.find({memberEmail})
+        // console.log('mm',Members_in_Teams)
+        if (Members_in_Teams) {
+            res.send({ status: 'success', Members_in_Teams})
+        }
+        else {
+            res.send({
+                message: "Error in data receiving"
+            })
+        }
+    }
+    catch (err) {
+        console.log('err', err)
+    }
+}
+
 module.exports = {
     addTeam,
     deleteTeam,
+    addMember,
+    getlogginPerson_TeamMember,
 }

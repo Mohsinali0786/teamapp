@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Checkbox, Modal, Form, Input } from 'antd';
 import AddIcon from '@mui/icons-material/Add';
 import axios from 'axios';
-import {POST} from '../utils/api'
+import {POST} from '../../utils/api'
 import Swal from "sweetalert2";
 import { useSelector } from 'react-redux';
+import { getTeam } from '../../utils/helper';
+import { useDispatch } from 'react-redux';
 
 const AddTeamModal = () => {
+    const dispatch=useDispatch()
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [addteam,setaddteam]=useState(false)
     const dataRedux=useSelector((state)=>state)
 
     console.log('dataRedux in add team',dataRedux)
+    useEffect(()=>{
+        getTeam(dispatch)
+        setaddteam(false)
+
+    },[addteam===true])
     const showModal = () => {
         setIsModalOpen(true);
     };
@@ -35,6 +44,7 @@ const AddTeamModal = () => {
                 icon: res.data.status,
                 text: res.data.message,
               });
+              setaddteam(true)
             }
             else {
               Swal.fire({
@@ -47,7 +57,7 @@ const AddTeamModal = () => {
             alert("Ohh Error Occured");
             console.log(error, "=error=");
           });
-    
+          
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);

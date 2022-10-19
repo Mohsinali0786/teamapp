@@ -10,10 +10,13 @@ const AUTH={
 }
 const POST={
     ADDTEAM:`${postApi}/addteam`,
-    DELETETEAM:`${postApi}/deleteteam`
+    DELETETEAM:`${postApi}/deleteteam`,
+    ADDMEMBER:`${postApi}/addmember`,
+    GETTEAMBYLOGINUSER:`${postApi}/getmemberbyloginuser`
 }
 const GET={
-    GETTEAM:`${getApi}/getteam`
+    GETTEAM:`${getApi}/getteam`,
+    GETMEMBERS:`${getApi}/getmembers`
 }
 
 export {AUTH,POST,GET}

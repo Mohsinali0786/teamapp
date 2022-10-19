@@ -1,9 +1,10 @@
-import { REGISTER, REGISTERCOMPANY, LOGIN, LOGOUT, DELETE, EDIT, ADDDATE, GETTEAMS } from '../type'
+import {LOGIN, LOGOUT, GETTEAMS,GETTEAMBYLOGINUSER,GETMEMBERBYTEAM } from '../type'
 
 const initialState = {
 
     LoginUser: {},
-    MyTeams: []
+    MyTeams: [],
+    MemberOfATeams:[],
 }
 
 const AllUsers = (state = initialState, action) => {
@@ -26,6 +27,18 @@ const AllUsers = (state = initialState, action) => {
                 ...state,
                 MyTeams: action.payload
             }
+            case GETTEAMBYLOGINUSER:
+                console.log('GETTEAMBYLOGINUSER',action.payload)
+                return {
+                    ...state,
+                    MemberOfATeams: action.payload
+                }
+                case GETMEMBERBYTEAM:
+                    console.log('GETMEMBERBYTEAM',action.payload)
+                    return {
+                        ...state,
+                        GerMemberByTeam: action.payload
+                    }
 
         default: return state
 
