@@ -66,10 +66,10 @@ const deleteTeam = async (req, res) => {
     }
 }
 const addMember = async (req, res) => {
-
+    const allmembers=membersmodel.find()
     console.log('body',req.body)
     try {
-        const { memberEmail, teamname,teamowner } = req.body
+        const { memberEmail, teamname,teamemail,teamowner } = req.body
         const MemberExists = await membersmodel.findOne({ memberEmail, teamname })
         if (MemberExists) {
             if (MemberExists.isDeleted !== true) {
@@ -79,7 +79,7 @@ const addMember = async (req, res) => {
                 await MemberExists.updateOne({
                     isDeleted: false,
                 }).then(() => {
-                    res.send({ status: 'success', message: 'Congratulations Team added successfully' })
+                    res.send({ status: 'success', message: 'Congratulations Team added successfully',allmembers })
                 }).catch((err) => {
                     console.log('err', err)
                 })
@@ -88,6 +88,7 @@ const addMember = async (req, res) => {
         else {
             await membersmodel.create({
                 teamname,
+                teamemail,
                 memberEmail,
                 teamowner,
                 isDeleted: false,

@@ -36,14 +36,14 @@ export default function Home() {
     }
     return (
         <div>
-            <MenuAppBar />
+            <MenuAppBar LoginUser={dataRedux.AllUsers.LoginUser} />
             {/* <h2>Home</h2> */}
             {/* <button onClick={()=>{dispatch(logout)}}>Logout</button> */}
             <AddTeamModal />
             <div style={{marginLeft:'50px' ,width:'650px',textAlign:'center'}}>
                 <MyTeam />
             </div>
-            <div  style={{marginLeft:'50px' ,width:'400px',textAlign:'center',marginLeft:'200px'}}>
+            <div  style={{marginLeft:'50px' ,width:'650px',textAlign:'center'}}>
                 <TeamMember/>
             </div>
 

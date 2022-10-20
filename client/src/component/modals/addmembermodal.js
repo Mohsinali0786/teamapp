@@ -7,8 +7,9 @@ import Swal from "sweetalert2";
 
 const AddMember = (props) => {
 
-    const {teamname,teamowner}=props
-    console.log('teamowner',teamowner)
+    const {teamname,teamowner,teamemail}=props
+    // const teamemail=teamEmail
+    console.log('teamowner',teamemail)
     const [email,setEmail]=useState('')
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
@@ -25,11 +26,12 @@ const AddMember = (props) => {
     
   },[])
 
-  const onsubmitbtn=(memberEmail,teamname,teamowner)=>{
+  const onsubmitbtn=(memberEmail,teamname,teamowner,teamemail)=>{
     handleOk()
     let memberdata={
         memberEmail,
         teamname,
+        teamemail,
         teamowner
     }
     axios.post(`http://localhost:4000${POST?.ADDMEMBER}`,memberdata)
@@ -63,7 +65,7 @@ const AddMember = (props) => {
       <a onClick={showModal}>
         Add Member
       </a>
-      <Modal title="Basic Modal" open={isModalOpen} onOk={()=>{onsubmitbtn(email,teamname,teamowner)}} onCancel={handleCancel}>
+      <Modal title="Basic Modal" open={isModalOpen} onOk={()=>{onsubmitbtn(email,teamname,teamowner,teamemail)}} onCancel={handleCancel}>
         <p><span>Team:</span><b>{teamname}</b></p>
         <label>Member Email:</label>
         <input name='membermeail' onChange={(e)=>setEmail(e.target.value)}/>

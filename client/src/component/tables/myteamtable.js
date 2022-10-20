@@ -21,7 +21,7 @@ export default function MyTeam() {
   console.log('data Redux',dataRedux)
   let myTeam = dataRedux?.MyTeams
   // console.log('++>>',dataRedux?.LoginUser?.data?.email)
-  myTeam=myTeam?.filter((teams,index)=>teams?.isDeleted===false&& teams?.useremail===dataRedux?.LoginUser?.data.email)
+  myTeam=myTeam?.filter((teams,index)=>teams?.isDeleted===false&& teams?.useremail===dataRedux?.LoginUser?.data?.email)
   console.log('myteam',myTeam)
   // console.log('data in table', myTeam)
   useEffect(()=>{
@@ -74,9 +74,10 @@ export default function MyTeam() {
             key="action"
             render={(_, record,index) => (
               <Space size="middle">
+                <a>Edit</a>
                 <a onClick={(e)=>deletedata(record._id)}>Delete</a>
-                <ViewMembers teamname={record.teamname} teamowner={record.useremail}/>
-               <AddMember teamname={record.teamname} teamowner={record.useremail}/>
+                <ViewMembers teamname={record.teamname} teamowner={record.useremail} teamemail={record.teamemail}/>
+               <AddMember teamname={record.teamname} teamowner={record.useremail} teamemail={record.teamemail}/>
               </Space>
             )}
           />

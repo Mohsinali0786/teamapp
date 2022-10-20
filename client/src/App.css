@@ -161,3 +161,24 @@
 .tablediv{
   /* height: 2px !important; */
 }
+.home-userloginemail{
+  font-size: 15px !important;
+}
+
+
+
+
+/* View Component  CSS*/
+
+.viewdata-MembersLength{
+  text-align: right;
+}
+.viewdata-heading{
+  text-align: center;
+}
+
+.viewdata-datatable{
+  border: 1px solid black;
+  text-align: center;
+  /* margin-left: 30%; */
+}

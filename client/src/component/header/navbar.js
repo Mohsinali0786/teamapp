@@ -12,11 +12,12 @@ import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { logout } from "../../store/actions"
-import { useDispatch,useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 
-export default function MenuAppBar() {
-  const dispatch=useDispatch()
+export default function MenuAppBar(props) {
+  const dispatch = useDispatch()
+  const { LoginUser } = props
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const handleChange = (event) => {
@@ -30,6 +31,7 @@ export default function MenuAppBar() {
     setAnchorEl(null);
   };
 
+  console.log('LoginUser.data.email', LoginUser.data.email)
   return (
     <Box sx={{ flexGrow: 1 }}>
 
@@ -41,11 +43,11 @@ export default function MenuAppBar() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
-          >
+            >
             <MenuIcon />
           </IconButton> */}
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Photos
+          <Typography variant="" component="div" sx={{ flexGrow: 1 }}>
+            HOME
           </Typography>
           {auth && (
             <div>
@@ -57,6 +59,9 @@ export default function MenuAppBar() {
                 onClick={handleMenu}
                 color="inherit"
               >
+              <Typography className='home-userloginemail' component="div" sx={{ flexGrow: 1 }}>
+                {LoginUser.data.email}
+              </Typography>
                 <AccountCircle />
               </IconButton>
               <Menu
@@ -75,7 +80,7 @@ export default function MenuAppBar() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem  onClick={()=>{dispatch(logout)}}>Logout</MenuItem>
+                <MenuItem onClick={() => { dispatch(logout) }}>Logout</MenuItem>
               </Menu>
             </div>
           )}
