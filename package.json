@@ -9,6 +9,7 @@
     "dev": "node index.js",
     "client": "npm start --prefix ./client && npm start --prefix client",
     "heroku-postbuild": "npm install --legacy-peer-deps --prefix client && npm run build --prefix client"
+    
 
   },
   "repository": {

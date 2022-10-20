@@ -21,3 +21,9 @@ app.use("/api", userRoutes)
 app.listen(process.env.PORT || 8080, () => {
     console.log(`App is running ${process.env.PORT}`)
 })
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("build"));
+    app.get("*", (req, res) => {
+      res.sendFile(path.resolve(__dirname,  "build", "index.html"));
+    });
+  }
