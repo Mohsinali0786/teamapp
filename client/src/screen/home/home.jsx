@@ -40,10 +40,10 @@ export default function Home() {
             {/* <h2>Home</h2> */}
             {/* <button onClick={()=>{dispatch(logout)}}>Logout</button> */}
             <AddTeamModal />
-            <div style={{marginLeft:'50px' ,width:'650px',textAlign:'center'}}>
+            <div className="home-myteam-div">
                 <MyTeam />
             </div>
-            <div  style={{marginLeft:'50px' ,width:'650px',textAlign:'center'}}>
+            <div className="home-team-member-div">
                 <TeamMember/>
             </div>
 

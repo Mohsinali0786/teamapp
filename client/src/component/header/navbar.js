@@ -31,7 +31,7 @@ export default function MenuAppBar(props) {
     setAnchorEl(null);
   };
 
-  console.log('LoginUser.data.email', LoginUser.data.email)
+  // console.log('LoginUser.data.email', LoginUser.data.email)
   return (
     <Box sx={{ flexGrow: 1 }}>
 

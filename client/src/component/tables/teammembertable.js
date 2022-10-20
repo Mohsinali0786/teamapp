@@ -14,9 +14,9 @@ export default function MyTeam() {
   console.log('data in table', dataRedux)
   useEffect(()=>{
 
-    console.log('team member table useeffect')
+    // console.log('team member table useeffect')
     axios.post(`http://localhost:4000${POST?.GETTEAMBYLOGINUSER}`,current_login).then((res) => {
-      console.log(res.data,'res.data in teammembertable')
+      // console.log(res.data,'res.data in teammembertable')
       dispatch(getTeamsByLoginUser(res.data.Members_in_Teams))
       // return res.data
       // console.log(res.data.Teams, "=res=")

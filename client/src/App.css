@@ -158,15 +158,43 @@
   padding: 4px !important;
  
 }
-.tablediv{
-  /* height: 2px !important; */
-}
+
 .home-userloginemail{
   font-size: 15px !important;
 }
+.home-myteam-div{
+  margin-left:50px;
+  width:70%;
+  text-align:center;
+}
+.home-myteam-div > div{
+  max-width: 70% !important;
+}
+.home-team-member-div{
+  margin-left:50px;
+  width:75%;
+  text-align:center;
+}
+.home-team-member-div>div{
+  max-width: 65% !important;
+}
+/* myteamtable CSS */
 
-
-
+::-webkit-scrollbar {
+  display: none;
+}
+.ant-table table{
+  /* width:20% ;  */
+}
+.myteamtable-table{
+  /* width: 20% !important; */
+}
+.myteamtable-component-div{
+  display: flex;
+}
+/* .myteamtable-component-div > div{
+  margin-left: 10px !important;
+} */
 
 /* View Component  CSS*/
 
