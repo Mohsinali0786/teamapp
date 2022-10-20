@@ -4,6 +4,8 @@ const app = express();
 const cors = require('cors')
 const userRoutes = require('./routes')
 const dotenv = require('dotenv')
+var path = require('path');
+
 
 app.use(express.json());
 
