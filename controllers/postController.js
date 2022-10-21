@@ -109,13 +109,13 @@ const addMember = async (req, res) => {
 }
 const getlogginPerson_TeamMember = async (req, res) => {
 
-    const { email } = req.body
-    let memberEmail = email
+    const memberEmail = req.body.email
+    // let  = email
     console.log('req.body', req.body)
     try {
         
-        const Members_in_Teams = await membersmodel.find({ memberEmail })
-        // console.log('mm',Members_in_Teams)
+        const Members_in_Teams = await membersmodel.find({memberEmail})
+        console.log('mm',Members_in_Teams)
         if (Members_in_Teams) {
             res.send({ status: 'success', Members_in_Teams })
         }

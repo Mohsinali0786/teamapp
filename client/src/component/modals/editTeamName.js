@@ -2,13 +2,14 @@ import { Modal } from 'antd';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { AUTH, GET, POST } from '../../utils/api'
+import EditIcon from '@mui/icons-material/Edit';
 
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getMember, getTeam } from '../../utils/helper';
 
 const EditTeamName = (props) => {
-    const {teamid}=props
+    const {teamid,color}=props
     // console.log('team id',teamid)
     const [inputteamname,setInputteamname]=useState('')
     const dispatch = useDispatch()
@@ -53,7 +54,7 @@ const EditTeamName = (props) => {
     return (
         <>
             <a onClick={showModal}>
-                Edit
+                <EditIcon className='myteamtable-icons' sx={{color:color}}/>
             </a>
             <Modal title="Edit Team Name" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                 <table>

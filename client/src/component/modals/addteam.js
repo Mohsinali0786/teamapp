@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Checkbox, Modal, Form, Input } from 'antd';
-import AddIcon from '@mui/icons-material/Add';
+// import AddIcon from '@mui/icons-material/Add';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import axios from 'axios';
 import {POST} from '../../utils/api'
 import Swal from "sweetalert2";
@@ -45,6 +46,7 @@ const AddTeamModal = () => {
                 text: res.data.message,
               });
               setaddteam(true)
+              handleOk()
             }
             else {
               Swal.fire({
@@ -65,9 +67,9 @@ const AddTeamModal = () => {
     return (
         <>
             {/* <Button type="primary" > */}
-            <AddIcon className='add-team-icon' onClick={showModal}/>
+            <GroupAddIcon className='add-team-icon' onClick={showModal}/>
             {/* </Button> */}
-            <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} okButtonProps={{ style: { display: 'none' } }}
+            <Modal title="Add team" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} okButtonProps={{ style: { display: 'none' } }}
 >
                 <Form
                     name="basic"

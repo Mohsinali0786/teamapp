@@ -1,3 +1,4 @@
+
 /* classes  */
 
 /* signup-form-css */
@@ -21,7 +22,7 @@
 
 .ant-col-sm-8 {
   text-align: left !important;
-  max-width:100% !important;
+  max-width: 100% !important;
 }
 
 .myform div {
@@ -43,9 +44,10 @@
 .signup-form-inputs {
   padding-left: 40px !important;
   height: 40px !important;
-  
+
 }
-.iconwithinput{
+
+.iconwithinput {
   display: flex;
 }
 
@@ -145,68 +147,208 @@
 
 /* Home Screen CSS */
 
-.add-team-icon{
-  font-size:50px !important;
-  color: white;
-  background-color: #013360;
-  position: absolute;
-  bottom: 100px;
-  right:50px
+.home-tables-Main-div{
+  display: flex;
 }
-.ant-table-tbody  {
-  height: 2px !important; 
-  padding: 4px !important;
- 
+.home-addteam-component-div{
+  width: 10%;
+}
+.add-team-icon {
+  font-size: 70px !important;
+  /* color: white; */
+  color: #013360;
+  /* color:white; */
+  position: fixed;
+  bottom: 5%;
+  right: 2%
+}
+.home-tables-div{
+  width: 90%;
 }
 
-.home-userloginemail{
+.add-team-icon:hover{
+  cursor: pointer;
+}
+
+.ant-table-tbody {
+  height: 2px !important;
+  padding: 4px !important;
+  
+}
+
+.home-userloginemail {
   font-size: 15px !important;
 }
-.home-myteam-div{
-  margin-left:50px;
-  width:70%;
-  text-align:center;
+
+.home-myteam-div {
+  margin-left: 1%;
+  margin-right: 1%;
+  width: 100%;
+  /* text-align: center; */
+  /* display: flex;
+  justify-content: center; */
 }
-.home-myteam-div > div{
-  max-width: 70% !important;
+
+.home-myteam-div>div {
+  max-width: 100% !important;
 }
-.home-team-member-div{
-  margin-left:50px;
-  width:75%;
-  text-align:center;
+
+.home-team-member-div {
+  /* margin-left: 1%;
+  margin-right: 2%; */
+  width: 100%;
+  margin-top: 20px;
+  margin-left: 2%;
+  /* text-align: center;
+  display: flex;
+  justify-content: center; */
 }
-.home-team-member-div>div{
-  max-width: 65% !important;
+
+.home-team-member-div>div {
+  /* max-width: 100% !important; */
 }
+
+.home-myteam-div {
+  /* background-color: rebeccapurple; */
+}
+
+.home-tables-div {
+  margin-top: 20px;
+  /* display: flex; */
+}
+
 /* myteamtable CSS */
 
 ::-webkit-scrollbar {
   display: none;
 }
-.ant-table table{
-  /* width:20% ;  */
+
+.ant-table table {
+  width: 100%;
 }
-.myteamtable-table{
+
+.myteamtable-table {
   /* width: 20% !important; */
 }
-.myteamtable-component-div{
+
+.myteamtable-component-div {
   display: flex;
+  flex-direction: column;
+  text-align: center;
 }
+
+.myteamtable-div {
+  border: 1px solid black;
+  /* padding: 0px 5px; */
+  /* width: 80%; */
+}
+
+.myteamtable-div table {
+  font-size: 11px;
+}
+
+.ant-spin-container ul {
+  display: none !important;
+}
+.myteamtable-icons{
+  font-size: 17px !important;
+  color:#013360;
+  margin-left: 5px;
+}
+.myteamtable-deleteicon{
+  margin-left: 50px;
+}
+.myteamtable-div > h4{
+  /* text-align: right !important; */
+  display: flex;
+  flex-wrap: wrap; 
+}
+.myteamtable-Main-div{
+  display: flex;
+  flex-wrap: wrap;
+}
+.myteamtable-Main-div >div{
+  margin-left: 1% ;
+  margin-top: 1%;
+}
+.myteamtable-teamname-heading{
+  background-color: #013360;
+  color: white;
+  border-radius: 0px 0px 15px 0px;
+  /* padding: 3px; */
+}
+/* .teammembertable-table CSS */
+
+.teammembertable-div table {
+  font-size: 11px;
+}
+
+.teammembertable-div {
+  border: 1px solid black;
+  /* padding: 0px 5px; */
+  /* width: 80%; */
+  height: 250px;
+}
+
+
+
+
 /* .myteamtable-component-div > div{
   margin-left: 10px !important;
 } */
 
 /* View Component  CSS*/
 
-.viewdata-MembersLength{
+.viewdata-MembersLength {
   text-align: right;
 }
-.viewdata-heading{
+
+.viewdata-heading {
   text-align: center;
 }
 
-.viewdata-datatable{
+.viewdata-datatable {
   border: 1px solid black;
   text-align: center;
+  width: 100%;
   /* margin-left: 30%; */
+}
+
+@media only screen and (max-width: 670px) {
+
+  /* Home CSS */
+  .home-tables-div {
+    display: block;
+    margin-left: 3%;
+    margin-right: 3%;
+  }
+
+  .home-tables-div>div {
+    margin-top: 20px;
+    width: 100%;
+    margin-left: 0px;
+
+  }
+
+  .home-myteam-div>div {
+    text-align: center;
+    max-width: 100% !important;
+  }
+
+  .home-team-member-div {
+    margin-left: 0px;
+   
+    width: 100%;
+  }
+
+  .home-team-member-div>div {
+    max-width: 100% !important;
+  }
+
+  /* .myteamtable-div{
+    width: 100%;
+  } */
+  .myteamtable-div table ,.teammembertable-div table {
+    font-size: 13px;
+  }
 }

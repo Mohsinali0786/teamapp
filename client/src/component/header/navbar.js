@@ -60,7 +60,7 @@ export default function MenuAppBar(props) {
                 color="inherit"
               >
               <Typography className='home-userloginemail' component="div" sx={{ flexGrow: 1 }}>
-                {LoginUser.data.email}
+                {LoginUser?.data?.email}
               </Typography>
                 <AccountCircle />
               </IconButton>

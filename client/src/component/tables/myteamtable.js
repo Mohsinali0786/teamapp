@@ -10,12 +10,14 @@ import AddMember from '../modals/addmembermodal';
 import ViewMembers from '../modals/viewMembers';
 import EditTeamName from '../modals/editTeamName';
 import { getTeamsByLoginUser } from '../../store/actions';
-
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Button } from '@mui/material';
 
 
 const { Column, ColumnGroup } = Table;
-export default function MyTeam() {
+export default function MyTeam(props) {
   const [deletedbtn, setdeletedbtn] = useState(false)
+  const { memberadded, setmemberadded } = props
 
   const dispatch = useDispatch()
   const dataRedux = useSelector((state) => state.AllUsers)
@@ -60,36 +62,61 @@ export default function MyTeam() {
 
   }
   return (
-    <div>
+    <div className='' >
       <h4>My Teams</h4>
-      < Table dataSource={myTeam} size='small' scroll={{ y: 130 }}>
+      <div className='myteamtable-Main-div'>
+        {
+          myTeam.map((v, i) => {
+            return (
+              <div className='myteamtable-div'>
+                <h4 className='myteamtable-teamname-heading'>
+                  {v.teamname}
+                  <EditTeamName color='white' teamid={v._id} teamname={v.teamname} />
+                  <div className='myteamtable-deleteicon'>
+                    <ViewMembers color='white' teamname={v.teamname} teamowner={v.useremail} teamemail={v.teamemail} />
+                    <a onClick={(e) => deletedata(v._id)}><DeleteIcon className='myteamtable-icons' sx={{color:'white'}}  /></a>
+                  </div>
+                </h4>
+                <p>{v.teamemail}
+                  <EditTeamName teamid={v._id} teamname={v.teamname} />
+                </p>
+                <div>
+                  <Button  sx={{fontSize:'10px'}}>View Description</Button>
+                  {/* <EditTeamName teamid={v._id} teamname={v.teamname} /> */}
+                </div>
+                <div>
+                  <AddMember memberadded={memberadded} setmemberadded={setmemberadded} teamname={v.teamname} teamowner={v.useremail} teamemail={v.teamemail} />
+                </div>
+                {/* <div className=''>
+                </div> */}
+                <div></div>
+              </div>
+            )
+          })
+        }
+      </div>
+      {/* < Table dataSource={myTeam} size='small' scroll={{ y: 150 }} >
         <ColumnGroup columnWidth='50px' className='myteamtable-table'>
           <Column title="TeamName " dataIndex="teamname" key="teamname" />
           <Column title="TeamEmail" dataIndex="teamemail" key="teamemail" />
-          {/* <Column title="UserEmail" dataIndex="useremail" key="useremail" /> */}
-
         </ColumnGroup>
-        {/* <Column title="Age" dataIndex="age" key="age" />
-    <Column title="Address" dataIndex="address" key="address" /> */}
-
         <Column
-
           title="Action"
           key="action"
           render={(_, record, index) => (
-            <Space size="middle">
-              <div className='myteamtable-component-div'>
+            <Space size="middle" >
+              <div className=''>
                 <EditTeamName teamid={record._id} teamname={record.teamname} />
-                <a onClick={(e) => deletedata(record._id)}>Delete</a>
+                <a onClick={(e) => deletedata(record._id)}><DeleteIcon className='myteamtable-icons'/></a>
               </div>
-              <div  className='myteamtable-component-div'>
+              <div className=''>
                 <ViewMembers teamname={record.teamname} teamowner={record.useremail} teamemail={record.teamemail} />
-                <AddMember teamname={record.teamname} teamowner={record.useremail} teamemail={record.teamemail} />
+                <AddMember memberadded={memberadded} setmemberadded={setmemberadded} teamname={record.teamname} teamowner={record.useremail} teamemail={record.teamemail} />
               </div>
             </Space>
           )}
         />
-      </Table >
+      </Table > */}
     </div>
   );
 }

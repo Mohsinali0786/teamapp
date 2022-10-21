@@ -19,7 +19,7 @@ const registerUser = async (req,res)=>{
                 password,
                 isDeleted: false
             }).then(() => {
-                res.send({ status: 'success', message: 'Congratulations You added your user successfully' })
+                res.send({ status: 'success', message: 'Congratulations You signup successfully' })
             }).catch((err) => {
 
             })

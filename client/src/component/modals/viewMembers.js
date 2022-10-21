@@ -5,8 +5,10 @@ import { useEffect, useState } from 'react';
 // import Swal from "sweetalert2";
 import { useSelector, useDispatch } from 'react-redux';
 import { getMember } from '../../utils/helper';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 const ViewMembers = (props) => {
+    const {color}=props
     const dispatch = useDispatch()
     const data = useSelector((state) => state.AllUsers)
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,10 +39,13 @@ const ViewMembers = (props) => {
     };
     return (
         <>
+        {/* <div style={{display:'flex'}}> */}
             <a onClick={showModal}>
-                View
+                {/* View */}
+                <VisibilityIcon className='myteamtable-icons' sx={{color:color}}/>
             </a>
-            <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        {/* </div> */}
+            <Modal title="View member" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                 <h4 className='viewdata-heading'>All {teamname} Members</h4>
                 <p className='viewdata-MembersLength'>Total({allmembers?.length})</p>
                 <table className='viewdata-datatable' border='1px solid black'>
