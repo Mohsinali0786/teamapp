@@ -13,7 +13,8 @@ const POST={
     DELETETEAM:`${postApi}/deleteteam`,
     ADDMEMBER:`${postApi}/addmember`,
     GETTEAMBYLOGINUSER:`${postApi}/getmemberbyloginuser`,
-    EDITTEAMNAME:`${postApi}/editteamname`
+    EDITTEAMNAME:`${postApi}/editteamname`,
+    EDITTEAMEMAIL:`${postApi}/editteamemail`
 }
 const GET={
     GETTEAM:`${getApi}/getteam`,

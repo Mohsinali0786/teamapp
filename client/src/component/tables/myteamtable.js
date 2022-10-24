@@ -17,6 +17,7 @@ import { Button } from '@mui/material';
 const { Column, ColumnGroup } = Table;
 export default function MyTeam(props) {
   const [deletedbtn, setdeletedbtn] = useState(false)
+  const [editTeamName,setEditTeamName]=useState(false)
   const { memberadded, setmemberadded } = props
 
   const dispatch = useDispatch()
@@ -71,7 +72,7 @@ export default function MyTeam(props) {
               <div className='myteamtable-div'>
                 <h4 className='myteamtable-teamname-heading'>
                   {v.teamname}
-                  <EditTeamName color='white' teamid={v._id} teamname={v.teamname} />
+                  <EditTeamName editTeamName={true} color='white' teamid={v._id} teamname={v.teamname} />
                   <div className='myteamtable-deleteicon'>
                     <ViewMembers color='white' teamname={v.teamname} teamowner={v.useremail} teamemail={v.teamemail} />
                     <a onClick={(e) => deletedata(v._id)}><DeleteIcon className='myteamtable-icons' sx={{color:'white'}}  /></a>

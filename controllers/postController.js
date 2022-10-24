@@ -138,7 +138,7 @@ const editTeamName = async (req, res) => {
 
     try {
         await teammodel.findByIdAndUpdate(req.params.id, {
-            teamname: teamname
+            teamname: teamname,
         }).then((res) => {
             res.send({
                 status: 'success',
@@ -149,7 +149,33 @@ const editTeamName = async (req, res) => {
                 status: 'error',
             })
         })
-        // console.log('result', result)
+
+    }
+    catch (err) {
+        console.log('err', err)
+    }
+}
+const editTeamEmail = async (req, res) => {
+    let { inputteamname } = req.body
+    let teamemail=inputteamname
+    console.log('team name:', req.body)
+    console.log('team req.params.id:', req.params.id)
+    console.log('teamemail:', teamemail)
+
+
+    try {
+        await teammodel.findByIdAndUpdate(req.params.id, {
+            teamemail: teamemail,
+        }).then((res) => {
+            res.send({
+                status: 'success',
+                message: 'Your data Updated successfully',
+            })
+        }).catch((error) => {
+            res.send({
+                status: 'error',
+            })
+        })
 
     }
     catch (err) {
@@ -163,4 +189,5 @@ module.exports = {
     addMember,
     getlogginPerson_TeamMember,
     editTeamName,
+    editTeamEmail,
 }
