@@ -1,5 +1,5 @@
 // const { getTeam } = require('../client/src/utils/helper')
-const { teammodel, membersmodel } = require('../models')
+const { teammodel, membersmodel, usermodel } = require('../models')
 const addTeam = async (req, res) => {
 
     const { teamname, teamemail, useremail } = req.body
@@ -71,35 +71,59 @@ const addMember = async (req, res) => {
     console.log('body', req.body)
     try {
         const { memberEmail, teamname, teamemail, teamowner } = req.body
-        const MemberExists = await membersmodel.findOne({ memberEmail, teamname })
+        let email=memberEmail
+        // const MemberExists = await usermodel.findOne({ memberEmail, teamname })
+        const MemberExists = await usermodel.findOne({ email})
+
+        console.log('MemberExists', MemberExists)
+
         if (MemberExists) {
-            if (MemberExists.isDeleted !== true) {
-                res.send({ status: 'error', message: 'This team is already exists' })
-            }
-            else {
-                await MemberExists.updateOne({
-                    isDeleted: false,
+            console.log('MemberExists IDD', MemberExists._id.toString())
+            // if (MemberExists.isDeleted !== true) {
+            //     res.send({ status: 'error', message: 'This team is already exists' })
+            // }
+            // else {
+            //     await MemberExists.updateOne({
+            //         isDeleted: false,
+            //     }).then(() => {
+            //         res.send({ status: 'success', message: 'Congratulations Team added successfully', allmembers })
+            //     }).catch((err) => {
+            //         console.log('err', err)
+            //     })
+            // }
+            const isTeamExist = await teammodel.findOne({ teamname })
+            console.log('isTeamExist', isTeamExist._id.toString())
+
+            if (isTeamExist) {
+                getId = isTeamExist._id.toString()
+                console.log('getId',getId)
+                await teammodel.findByIdAndUpdate(getId, {
+                    $push: { teammembers: MemberExists._id.toString() }
                 }).then(() => {
-                    res.send({ status: 'success', message: 'Congratulations Team added successfully', allmembers })
+                    res.send({ status: 'success', message: 'Congratulations Member added successfully' })
                 }).catch((err) => {
                     console.log('err', err)
+
                 })
             }
+            else {
+                res.send({ status: 'error', message: 'Team not exist' })
+
+            }
+            // await teammodel.create({
+            //     teamemail,
+            //     teamname,
+            //     teammembers:[MemberExists._id.toString()],
+            // }).then(() => {
+            //     res.send({ status: 'success', message: 'Congratulations Member added successfully' })
+            // }).catch((err) => {
+            //     console.log('err', err)
+
+            // })
         }
         else {
-            await membersmodel.create({
-                teamname,
-                teamemail,
-                memberEmail,
-                teamowner,
-                isDeleted: false,
-                isEditable: false
-            }).then(() => {
-                res.send({ status: 'success', message: 'Congratulations Member added successfully' })
-            }).catch((err) => {
-                console.log('err', err)
+            res.send({ status: 'error', message: 'User not exist' })
 
-            })
         }
 
     }
@@ -113,9 +137,9 @@ const getlogginPerson_TeamMember = async (req, res) => {
     // let  = email
     console.log('req.body', req.body)
     try {
-        
-        const Members_in_Teams = await membersmodel.find({memberEmail})
-        console.log('mm',Members_in_Teams)
+
+        const Members_in_Teams = await teammodel.find({ memberEmail })
+        console.log('mm', Members_in_Teams)
         if (Members_in_Teams) {
             res.send({ status: 'success', Members_in_Teams })
         }
@@ -132,7 +156,7 @@ const getlogginPerson_TeamMember = async (req, res) => {
 
 const editTeamName = async (req, res) => {
     let { inputteamname } = req.body
-    let teamname=inputteamname
+    let teamname = inputteamname
     console.log('team name:', req.body)
     console.log('team req.params.id:', req.params.id)
 
@@ -157,7 +181,7 @@ const editTeamName = async (req, res) => {
 }
 const editTeamEmail = async (req, res) => {
     let { inputteamname } = req.body
-    let teamemail=inputteamname
+    let teamemail = inputteamname
     console.log('team name:', req.body)
     console.log('team req.params.id:', req.params.id)
     console.log('teamemail:', teamemail)
@@ -176,7 +200,6 @@ const editTeamEmail = async (req, res) => {
                 status: 'error',
             })
         })
-
     }
     catch (err) {
         console.log('err', err)

@@ -16,16 +16,17 @@ const getTeam = (dispatch) => {
     })
 }
 
-const getMember = (dispatch) => {
+const getMember = (dispatch,LoginUser) => {
+    console.log('LoginUser',LoginUser)
     // const dispatch = useDispatch()
-    axios.get(`http://localhost:4000${GET?.GETMEMBERS}`).then((res) => {
-        console.log(res.data.Members,'res.data/Members')
+    axios.post(`http://localhost:4000${GET?.GETMEMBERS}`,LoginUser).then((res) => {
+        console.log(res.data,'res.data/Members')
         dispatch(getMemberByTeam(res.data.Members))
         // return res.data
         // console.log(res.data.Teams, "=res=")
 
     }).catch((err) => {
-        // console.log('Error====>', err)
+        console.log('Error====>', err)
     })
 }
 

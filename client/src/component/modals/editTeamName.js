@@ -17,7 +17,7 @@ const EditTeamName = (props) => {
     // const [viewClicked,setViewCliked]=useState(false)
     const { teamname, teamowner, teamemail } = props
     // console.log('teamName', teamname)
-    let allmembers = data?.GerMemberByTeam?.filter((v, i) => v?.teamemail === teamemail)
+    // let allmembers = data?.GerMemberByTeam?.filter((v, i) => v?.teamemail === teamemail)
     // console.log('allmembers', allmembers)
     
     

@@ -14,8 +14,11 @@ const ViewMembers = (props) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [viewClicked,setViewCliked]=useState(false)
     const { teamname, teamowner,teamemail } = props
-    console.log('teamName', teamemail)
-    let allmembers = data?.GerMemberByTeam?.filter((v, i) => v?.teamemail === teamemail)
+    console.log('teamName', data?.LoginUser)
+    // let allmembers = data?.GerMemberByTeam?.filter((v, i) => v?.teamemail === teamemail)
+    let allmembers = data?.GerMemberByTeam?.teammembers
+
+    // allmembers=allmembers?.teammembers
     console.log('allmembers', allmembers)
 
 
@@ -26,7 +29,8 @@ const ViewMembers = (props) => {
     
     const showModal = () => {
         setIsModalOpen(true);
-        getMember(dispatch)
+        console.log('')
+        getMember(dispatch,data?.LoginUser)
     };
     const handleOk = () => {
         setIsModalOpen(false);
@@ -63,12 +67,12 @@ const ViewMembers = (props) => {
                                     (i+1)%2===0?
                                 <tr style={{backgroundColor:'grey',color:'white'}}>
                                     <td>{i+1}</td>
-                                    <td>{v.memberEmail}</td>
+                                    <td>{v.email}</td>
                                 </tr>
                                 :
                                 <tr>
                                 <td>{i+1}</td>
-                                <td>{v.memberEmail}</td>
+                                <td>{v.email}</td>
                             </tr>
 
                                 }
