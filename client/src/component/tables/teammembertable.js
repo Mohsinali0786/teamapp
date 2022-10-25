@@ -34,7 +34,7 @@ export default function MyTeam() {
       <h4>Members of a Team</h4>
       <div className='myteamtable-Main-div'>
         {
-          myTeam.map((v, i) => {
+          myTeam?.map((v, i) => {
             return (
               <div className='myteamtable-div'>
                 <p className='myteamtable-teamname-heading'>{v.teamname}</p>

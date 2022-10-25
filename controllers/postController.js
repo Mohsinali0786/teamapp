@@ -138,8 +138,15 @@ const getlogginPerson_TeamMember = async (req, res) => {
     console.log('req.body', req.body)
     try {
 
-        const Members_in_Teams = await teammodel.find({ memberEmail })
+        let Members_in_Teams = await teammodel.find().populate('teammembers')
         console.log('mm', Members_in_Teams)
+        if(Members_in_Teams.teammembers.filter((v)=>v.email===memberEmail))
+        {
+            console.log('mm_mm', Members_in_Teams.teamname)
+        }
+   
+        // Members_in_Teams=Members_in_Teams.teammembers.filter((v)=>v.email===memberEmail)
+
         if (Members_in_Teams) {
             res.send({ status: 'success', Members_in_Teams })
         }
