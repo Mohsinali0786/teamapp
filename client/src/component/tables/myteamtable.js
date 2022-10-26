@@ -12,6 +12,7 @@ import EditTeamName from '../modals/editTeamName';
 import { getTeamsByLoginUser } from '../../store/actions';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Button } from '@mui/material';
+import {get_team_by_loginuser} from '../../utils/helper'
 
 
 const { Column, ColumnGroup } = Table;
@@ -22,21 +23,25 @@ export default function MyTeam(props) {
 
   const dispatch = useDispatch()
   const dataRedux = useSelector((state) => state.AllUsers)
+  const current_login = dataRedux?.LoginUser?.data
+
   console.log('data Redux', dataRedux)
   let myTeam = dataRedux?.MyTeams
   // console.log('++>>',dataRedux?.LoginUser?.data?.email)
   myTeam = myTeam?.filter((teams, index) => teams?.isDeleted === false && teams?.useremail === dataRedux?.LoginUser?.data?.email)
   // console.log('myteam',myTeam)
   // console.log('data in table', myTeam)
+  console.log('deleted',deletedbtn)
   useEffect(() => {
-    console.log('use effect')
+    console.log('use effect in my table')
     getTeam(dispatch)
+    get_team_by_loginuser(dispatch,current_login)
     setdeletedbtn(false)
   }, [deletedbtn === true])
   const deletedata = (index) => {
     axios.post(`http://localhost:4000${POST?.DELETETEAM}/${index}`)
       .then((res) => {
-        console.log('====>', res.data)
+        console.log('res.data====>', res.data)
         if (res.data?.status === "success") {
           Swal.fire({
             icon: res.data.status,
@@ -63,7 +68,7 @@ export default function MyTeam(props) {
 
   }
   return (
-    <div className='' >
+    <div className='myteamtable-MainParent' >
       <h4>My Teams</h4>
       <div className='myteamtable-Main-div'>
         {

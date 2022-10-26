@@ -35,7 +35,7 @@ export default function MenuAppBar(props) {
   return (
     <Box sx={{ flexGrow: 1 }}>
 
-      <AppBar position="static">
+      <AppBar position="static" className='navigation-bar'>
         <Toolbar>
           {/* <IconButton
             size="large"

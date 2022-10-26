@@ -12,6 +12,7 @@ import { AUTH, GET, POST } from '../../utils/api'
 import axios from 'axios';
 import { textAlign } from "@mui/system";
 import { getTeamsByLoginUser } from '../../store/actions';
+import {get_team_by_loginuser} from '../../utils/helper'
 
 
 
@@ -26,16 +27,14 @@ export default function Home() {
 
     useEffect(() => {
         console.log('use effect in home')
-        axios.post(`http://localhost:4000${POST?.GETTEAMBYLOGINUSER}`, current_login).then((res) => {
-      console.log(res.data.TeamNames, 'res.data in Home')
-      dispatch(getTeamsByLoginUser(res.data.TeamNames))
-      // return res.data
-      // console.log(res.data.Teams, "=res=")
+        get_team_by_loginuser(dispatch,current_login)
+    //     axios.post(`http://localhost:4000${POST?.GETTEAMBYLOGINUSER}`, current_login).then((res) => {
+    //   console.log(res.data.TeamNames, 'res.data in Home')
+    //   dispatch(getTeamsByLoginUser(res.data.TeamNames))
 
-    }).catch((err) => {
-      console.log('Error====>', err)
-    })
-
+    // }).catch((err) => {
+    //   console.log('Error====>', err)
+    // })
     }, [memberadded === true])
 
     useEffect(() => {

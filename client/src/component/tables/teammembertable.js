@@ -27,7 +27,7 @@ export default function MyTeam() {
 
   // }, [])
   return (
-    <div className=''>
+    <div className='myteamtable-MainParent-div'>
       <h4>Members of a Team</h4>
       <div className='myteamtable-Main-div'>
         {
