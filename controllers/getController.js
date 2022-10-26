@@ -1,4 +1,4 @@
-const { teammodel, membersmodel, usermodel } = require('../models')
+const { teammodel } = require('../models')
 const User = require('../models/usermodel')
 const getTeams = async (req, res) => {
     try {
@@ -18,11 +18,13 @@ const getTeams = async (req, res) => {
 }
 
 const getMembers = async (req, res) => {
-    console.log('hello req.body', req.body.data.email)
-    let useremail = req.body.data.email
+    console.log('hello req.body', req.body)
+    const {email}=req.body.LoginUser
+    const {teamname}=req.body
+    let useremail = email
     try {
-        const Members = await teammodel.findOne({ useremail }).populate("teammembers") // key to populate
-
+        const Members = await teammodel.findOne({ useremail,teamname}).populate("teammembers") // key to populate
+        console.log('===>',Members)
         if (Members) {
             res.send({ status: 'success', Members })
 

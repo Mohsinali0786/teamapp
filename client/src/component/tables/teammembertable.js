@@ -15,20 +15,17 @@ export default function MyTeam() {
   let myTeam = dataRedux?.MemberOfATeams
   // myTeam=myTeam?.filter((teams,index)=>teams?.isDeleted===false)
   console.log('data in table', dataRedux)
-  useEffect(() => {
+  // useEffect(() => {
 
-    // console.log('team member table useeffect')
-    axios.post(`http://localhost:4000${POST?.GETTEAMBYLOGINUSER}`, current_login).then((res) => {
-      console.log(res.data, 'res.data in teammembertable')
-      dispatch(getTeamsByLoginUser(res.data.Members_in_Teams))
-      // return res.data
-      // console.log(res.data.Teams, "=res=")
+  //   console.log('team member table useeffect')
+  //   axios.post(`http://localhost:4000${POST?.GETTEAMBYLOGINUSER}`, current_login).then((res) => {
+  //     console.log(res.data.TeamNames, 'res.data in teammembertable')
+  //     dispatch(getTeamsByLoginUser(res.data.TeamNames))
+  //   }).catch((err) => {
+  //     console.log('Error====>', err)
+  //   })
 
-    }).catch((err) => {
-      console.log('Error====>', err)
-    })
-
-  }, [])
+  // }, [])
   return (
     <div className=''>
       <h4>Members of a Team</h4>
@@ -37,8 +34,8 @@ export default function MyTeam() {
           myTeam?.map((v, i) => {
             return (
               <div className='myteamtable-div'>
-                <p className='myteamtable-teamname-heading'>{v.teamname}</p>
-                <p>{v.teamowner}</p>
+                <p className='myteamtable-teamname-heading'>{v.teamName}</p>
+                <p>TeamOwner:<b>{v.useremail}</b></p>
                 <div>
                   <Button sx={{ fontSize: '10px' }}>View Description</Button>
                 </div>

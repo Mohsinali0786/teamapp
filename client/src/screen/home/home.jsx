@@ -11,6 +11,8 @@ import { getTeams } from "../../store/actions";
 import { AUTH, GET, POST } from '../../utils/api'
 import axios from 'axios';
 import { textAlign } from "@mui/system";
+import { getTeamsByLoginUser } from '../../store/actions';
+
 
 
 export default function Home() {
@@ -18,10 +20,21 @@ export default function Home() {
     const dispatch = useDispatch()
     const Navigate = useNavigate()
     const dataRedux = useSelector((state) => state)
-    console.log('dataRedux', dataRedux)
+    const current_login = dataRedux?.AllUsers?.LoginUser?.data
+    console.log('current_login Home', current_login)
     console.log('++++', getTeam())
 
     useEffect(() => {
+        console.log('use effect in home')
+        axios.post(`http://localhost:4000${POST?.GETTEAMBYLOGINUSER}`, current_login).then((res) => {
+      console.log(res.data.TeamNames, 'res.data in Home')
+      dispatch(getTeamsByLoginUser(res.data.TeamNames))
+      // return res.data
+      // console.log(res.data.Teams, "=res=")
+
+    }).catch((err) => {
+      console.log('Error====>', err)
+    })
 
     }, [memberadded === true])
 

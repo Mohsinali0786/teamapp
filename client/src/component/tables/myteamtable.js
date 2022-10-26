@@ -44,7 +44,7 @@ export default function MyTeam(props) {
           });
           setdeletedbtn(true)
           dispatch(getTeams(res.data.AllTeams))
-          getTeams(dispatch)
+          getTeam(dispatch)
           // dispatch(getTeamsByLoginUser(res.data.Members_in_Teams))
 
           //after delete get team

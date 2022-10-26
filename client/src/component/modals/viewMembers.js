@@ -30,7 +30,7 @@ const ViewMembers = (props) => {
     const showModal = () => {
         setIsModalOpen(true);
         console.log('')
-        getMember(dispatch,data?.LoginUser)
+        getMember(dispatch,data?.LoginUser.data,teamname)
     };
     const handleOk = () => {
         setIsModalOpen(false);

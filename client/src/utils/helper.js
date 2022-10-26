@@ -16,10 +16,15 @@ const getTeam = (dispatch) => {
     })
 }
 
-const getMember = (dispatch,LoginUser) => {
+const getMember = (dispatch,LoginUser,teamname) => {
     console.log('LoginUser',LoginUser)
+    console.log('teamname',teamname)
+    let logininfo={
+        LoginUser,
+        teamname
+    }
     // const dispatch = useDispatch()
-    axios.post(`http://localhost:4000${GET?.GETMEMBERS}`,LoginUser).then((res) => {
+    axios.post(`http://localhost:4000${GET?.GETMEMBERS}`,logininfo).then((res) => {
         console.log(res.data,'res.data/Members')
         dispatch(getMemberByTeam(res.data.Members))
         // return res.data

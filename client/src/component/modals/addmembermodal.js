@@ -37,7 +37,7 @@ const AddMember = (props) => {
   useEffect(()=>{
     axios.post(`http://localhost:4000${POST?.GETTEAMBYLOGINUSER}`,current_login).then((res) => {
       console.log(res.data,'res.data in teammembertable')
-      dispatch(getTeamsByLoginUser(res.data.Members_in_Teams))
+      dispatch(getTeamsByLoginUser(res.data.TeamNames))
       setmemberadded(false)
       // return res.data
       // console.log(res.data.Teams, "=res=")
@@ -49,6 +49,7 @@ const AddMember = (props) => {
   },[memberadded===true])
 
   const onsubmitbtn=(memberEmail,teamname,teamowner,teamemail)=>{
+    console.log('submitted')
     handleOk()
     let memberdata={
         memberEmail,
