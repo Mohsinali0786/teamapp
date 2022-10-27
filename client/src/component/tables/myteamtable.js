@@ -69,7 +69,7 @@ export default function MyTeam(props) {
   }
   return (
     <div className='myteamtable-MainParent' >
-      <h4>My Teams</h4>
+      <h3>My Teams</h3>
       <div className='myteamtable-Main-div'>
         {
           myTeam.map((v, i) => {
@@ -84,7 +84,7 @@ export default function MyTeam(props) {
                   </div>
                 </h4>
                 <p>{v.teamemail}
-                  <EditTeamName teamid={v._id} teamname={v.teamname} />
+                  <EditTeamName  teamid={v._id} teamname={v.teamname} />
                 </p>
                 <div>
                   <Button  sx={{fontSize:'10px'}}>View Description</Button>

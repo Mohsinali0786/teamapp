@@ -236,7 +236,12 @@
 .myteamtable-MainParent,.myteamtable-MainParent-div{
   border: 1px solid black;
   padding:10px;
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  /* background-color: #212b34; */
   border-radius: 10px;
+
 }
 .myteamtable-MainParent>h4{
   text-align: center;
@@ -254,8 +259,22 @@
 
 .myteamtable-div {
   border: 1px solid black;
+  background-color: #212b34;
+  border-radius: 3px;
   /* padding: 0px 5px; */
   /* width: 80%; */
+}
+.myteamtable-div p ,.myteamtable-div  button{
+  color: white;
+}
+.myteamtable-div  button{
+  border: 1px solid white;
+  margin:10px 20px;
+  width: 70%;
+  height: 30px;
+}
+.myteamtable-div button:hover{
+  background-color: #013360;
 }
 
 .myteamtable-div table {
@@ -267,7 +286,7 @@
 }
 .myteamtable-icons{
   font-size: 17px !important;
-  color:#013360;
+  color:white;
   margin-left: 5px;
 }
 .myteamtable-deleteicon{
@@ -290,8 +309,11 @@
   background-color: #013360;
   color: white;
   border-radius: 0px 0px 15px 0px;
+  border-bottom: 1px solid white;
+  height: 25px;
   /* padding: 3px; */
 }
+
 /* .teammembertable-table CSS */
 
 .teammembertable-div table {
