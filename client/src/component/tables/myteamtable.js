@@ -1,4 +1,4 @@
-import { Space, Table, Tag } from 'antd';
+import { Descriptions, Space, Table, Tag } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux"
 import axios from 'axios';
@@ -9,14 +9,18 @@ import { getTeam } from '../../utils/helper';
 import AddMember from '../modals/addmembermodal';
 import ViewMembers from '../modals/viewMembers';
 import EditTeamName from '../modals/editTeamName';
+import Description from '../../screen/Description/description';
+
 import { getTeamsByLoginUser } from '../../store/actions';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Button } from '@mui/material';
 import {get_team_by_loginuser} from '../../utils/helper'
+import { useNavigate } from 'react-router-dom';
 
 
 const { Column, ColumnGroup } = Table;
 export default function MyTeam(props) {
+  const Navigate=useNavigate()
   const [deletedbtn, setdeletedbtn] = useState(false)
   const [editTeamName,setEditTeamName]=useState(false)
   const { memberadded, setmemberadded } = props
@@ -74,7 +78,7 @@ export default function MyTeam(props) {
         {
           myTeam.map((v, i) => {
             return (
-              <div className='myteamtable-div'>
+              <div className='myteamtable-div mobile-teamtable'>
                 <h4 className='myteamtable-teamname-heading'>
                   {v.teamname}
                   <EditTeamName editTeamName={true} color='white' teamid={v._id} teamname={v.teamname} />
@@ -87,7 +91,9 @@ export default function MyTeam(props) {
                   <EditTeamName  teamid={v._id} teamname={v.teamname} />
                 </p>
                 <div>
-                  <Button  sx={{fontSize:'10px'}}>View Description</Button>
+                  <Button  sx={{fontSize:'10px'}} onClick={()=>{Navigate('/description',{state:v})}}>View Description</Button>
+                  
+                  {/* <Description teamname={v.teamname} teamowner={v.useremail} teamemail={v.teamemail}/> */}
                   {/* <EditTeamName teamid={v._id} teamname={v.teamname} /> */}
                 </div>
                 <div>

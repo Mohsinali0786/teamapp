@@ -5,11 +5,14 @@ import axios from 'axios';
 import { POST } from '../../utils/api';
 import { getTeamsByLoginUser } from '../../store/actions';
 import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { display } from '@mui/system';
 const { Column, ColumnGroup } = Table;
 export default function MyTeam() {
 
 
   const dispatch = useDispatch()
+  const Navigate=useNavigate()
   const dataRedux = useSelector((state) => state.AllUsers)
   const current_login = dataRedux?.LoginUser?.data
   let myTeam = dataRedux?.MemberOfATeams
@@ -33,11 +36,16 @@ export default function MyTeam() {
         {
           myTeam?.map((v, i) => {
             return (
-              <div className='myteamtable-div'>
+              <div className='myteamtable-div mobile-teammembertable'>
                 <p className='myteamtable-teamname-heading'>{v.teamName}</p>
-                <p>TeamOwner:<b>{v.useremail}</b></p>
+                <div className='myteamtable-text-div'>
+                  <div>TeamOwner</div>
+                  <div>{v.useremail}</div>
+                  </div>
+                {/* <p style={{fontSize:'12px'}}></p> */}
                 <div>
-                  <Button sx={{ fontSize: '10px' }}>View Description</Button>
+                {/* <Button  sx={{fontSize:'10px'}} onClick={()=>{Navigate('/description',{state:v})}}>View Description</Button> */}
+                  {/* <Button sx={{ fontSize: '10px' }}>View Description</Button> */}
                 </div>
               </div>
             )

@@ -1,4 +1,4 @@
-import {LOGIN, LOGOUT,GETTEAMS,GETTEAMBYLOGINUSER,GETMEMBERBYTEAM} from '../type'
+import {LOGIN, LOGOUT,GETTEAMS,GETTEAMBYLOGINUSER,GETMEMBERBYTEAM,UPLOADTEAMIMAGE} from '../type'
 
 export const user_login = (data) => async (dispatch) => {
     console.log("SignU Data", data)
@@ -33,5 +33,13 @@ export const getMemberByTeam=(data) => async (dispatch) =>{
     dispatch({
         type:GETMEMBERBYTEAM,
         payload:data
+    })
+}
+
+export const get_Img_url=(imgURL)=>async(dispatch)=>{
+    console.log('Img URL',imgURL)
+    dispatch({
+        type:UPLOADTEAMIMAGE,
+        payload:imgURL
     })
 }

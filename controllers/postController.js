@@ -1,8 +1,17 @@
 // const { getTeam } = require('../client/src/utils/helper')
 const { teammodel, usermodel } = require('../models')
+const cloudinary = require('cloudinary')
+
 const addTeam = async (req, res) => {
 
-    const { teamname, teamemail, useremail } = req.body
+    console.log('req.body',req.body)
+    const date=new Date()
+    const createdDate=date.getDate() + "/" +  (date.getMonth() + 1) +  "/" + date.getFullYear()
+    const createdTime=date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
+  
+    
+
+    const { teamname, teamemail, useremail,img_url,description } = req.body
     try {
         const TeamExists = await teammodel.findOne({ teamemail, useremail })
         if (TeamExists) {
@@ -21,9 +30,13 @@ const addTeam = async (req, res) => {
         }
         else {
             await teammodel.create({
+                teamimg:img_url,
                 teamname,
                 teamemail,
                 useremail,
+                createdDate,
+                createdTime,
+                description,
                 isDeleted: false,
                 isEditable: false
             }).then(() => {
@@ -70,19 +83,19 @@ const addMember = async (req, res) => {
     console.log('body', req.body)
     try {
         const { memberEmail, teamname, teamemail, teamowner } = req.body
-        let email=memberEmail
-        const MemberExists = await usermodel.findOne({ email})
+        let email = memberEmail
+        const MemberExists = await usermodel.findOne({ email })
         console.log('MemberExists', MemberExists)
 
         if (MemberExists) {
             console.log('MemberExists IDD', MemberExists._id.toString())
- 
+
             const isTeamExist = await teammodel.findOne({ teamname })
             console.log('isTeamExist', isTeamExist._id.toString())
 
             if (isTeamExist) {
                 getId = isTeamExist._id.toString()
-                console.log('getId',getId)
+                console.log('getId', getId)
                 await teammodel.findByIdAndUpdate(getId, {
                     $push: { teammembers: MemberExists._id.toString() }
                 }).then(() => {
@@ -111,14 +124,14 @@ const getlogginPerson_TeamMember = async (req, res) => {
     console.log('req.body', req.body)
     try {
         let Members_in_Teams = await teammodel.find().populate('teammembers')
-  
-        const TeamNames=[];
-        Members_in_Teams.map((v)=>{
-            if(!v.isDeleted){
-                const filteredData=v.teammembers.find((v)=>v.email===memberEmail)
-                if(filteredData){
-                    console.log('teammembers',v.teamname)
-                    TeamNames.push({teamName:v.teamname,useremail:v.useremail})
+
+        const TeamNames = [];
+        Members_in_Teams.map((v) => {
+            if (!v.isDeleted) {
+                const filteredData = v.teammembers.find((v) => v.email === memberEmail)
+                if (filteredData) {
+                    console.log('teammembers', v.teamname)
+                    TeamNames.push({ teamName: v.teamname, useremail: v.useremail })
                 }
             }
         })
@@ -194,6 +207,35 @@ const editTeamEmail = async (req, res) => {
     }
 }
 
+
+const uploadImage = async (req, res) => {
+    const file = req.files.file.tempFilePath
+    console.log('req.files', file)
+    const { formdata } = req.body
+    // const file_Name=req.file
+    // console.log('file_Name', req.body.path)
+    // console.log('formdata', formdata)
+
+    const options = {
+        use_filename: true,
+        unique_filename: false,
+        overwrite: true,
+    };
+    try {
+        const result = await cloudinary.uploader.upload(req.files.file.tempFilePath, function (err, result) {
+            
+        });
+        res.send({
+            success: true,
+            result:result.url
+        })
+        console.log(result.url, "result");
+        return result.public_id;
+    } catch (error) {
+        console.error('Err in upload', error);
+    }
+};
+
 module.exports = {
     addTeam,
     deleteTeam,
@@ -201,4 +243,5 @@ module.exports = {
     getlogginPerson_TeamMember,
     editTeamName,
     editTeamEmail,
+    uploadImage,
 }
