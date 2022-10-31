@@ -10,4 +10,7 @@ module.exports={
         type: Boolean,
         default: false
     },
+    ARRAY_STRING:{
+        type:Array,
+    }
 }

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { SigninScreen,SignupScreen,Home } from '../screen'
+import { SigninScreen,SignupScreen,Home,Description } from '../screen'
 import allPaths from './path'
 
 
@@ -11,6 +11,8 @@ function AppRouter() {
                 <Route path={allPaths?.LOGIN} element={<SigninScreen/>} />
                 <Route path={allPaths?.USERSIGNUP} element={<SignupScreen/>} />
                 <Route path={allPaths?.HOME} element={<Home/>} />
+                <Route path={allPaths?.DESCRIPTION} element={<Description/>} />
+
                 {/* <Route path={allPaths?.COMPANYSIGNUP} element={<CompanySignup/>} />
                 <Route path={allPaths?.ADMINPAGE} element={<Admin/>} />
                 <Route path={allPaths?.STUDENT} element={<Students/>} />

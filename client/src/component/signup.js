@@ -11,6 +11,8 @@ import axios from 'axios';
 import {AUTH} from '../utils/api'
 import Swal from "sweetalert2";
 import { Link } from 'react-router-dom';
+import {SendOutlined} from '@ant-design/icons';
+
 
 
 const formItemLayout = {
@@ -173,8 +175,9 @@ const SignupForm = () => {
 
       </Form.Item>
       <Form.Item {...tailFormItemLayout}>
-        <Button type="primary" htmlType="submit" className='registerbtn'>
+        <Button  type="primary" htmlType="submit" className='registerbtn'>
           Register
+          <SendOutlined />
         </Button>
       </Form.Item>
       <p>Already have account then<Link to='/'> Click here</Link></p>

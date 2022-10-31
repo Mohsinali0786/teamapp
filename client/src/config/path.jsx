@@ -1,6 +1,7 @@
 const LOGIN='/'
 const HOME='/home'
 const USERSIGNUP='/signupform'
+const DESCRIPTION='/description'
 // const ADMINPAGE='/adminPage'
 // const STUDENT='/student'
 // const COMPANYSIGNUP='/comapanysignup'
@@ -11,6 +12,7 @@ export default{
     LOGIN,
     HOME,
     USERSIGNUP,
+    DESCRIPTION,
     // ADMINPAGE,
     // STUDENT,
     // COMPANYSIGNUP,

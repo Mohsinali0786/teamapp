@@ -1,27 +1,25 @@
-const User=require('../models/usermodel')
-const bcrypt=require('bcryptjs')
+const { usermodel } = require('../models')
+const bcrypt = require('bcryptjs')
 
-const registerUser = async (req,res)=>{
-    try{
+const registerUser = async (req, res) => {
+    try {
         console.log('req.body for users', req.body)
-        let { name,email,password} = req.body
+        let { name, email, password } = req.body
         const salt = await bcrypt.genSalt(10);
         password = await bcrypt.hash(password, salt);
-        const UserExist = await User.findOne({ email})
+        const UserExist = await usermodel.findOne({ email })
 
         if (UserExist) {
             res.send({ status: 'error', message: 'This email is already exists' })
-
         }
-        else{
-
-            await User.create({
+        else {
+            await usermodel.create({
                 name,
                 email,
                 password,
                 isDeleted: false
             }).then(() => {
-                res.send({ status: 'success', message: 'Congratulations You added your user successfully' })
+                res.send({ status: 'success', message: 'Congratulations You signup successfully' })
             }).catch((err) => {
 
             })
@@ -32,29 +30,34 @@ const registerUser = async (req,res)=>{
     }
 }
 
-const loginUser = async(req,res)=>{
-    const {email, password } = req.body
+const loginUser = async (req, res) => {
+    const { email, password } = req.body
 
-    let userExist = await User.findOne({ email})
+    try {
+        let userExist = await usermodel.findOne({ email })
 
-    if (userExist) {
-        const mypassword = await bcrypt.compare(password, userExist?.password)
-        if (mypassword) {
-            res.send({ status: 'success', message: 'Congratulation You Successfully Login !' })
+        if (userExist) {
+            const mypassword = await bcrypt.compare(password, userExist?.password)
+            if (mypassword) {
+                res.send({ status: 'success', message: 'Congratulation You Successfully Login !' })
+            }
+            else {
+                res.send({
+                    status: 'error', message: 'Incorrect Password'
+                })
+            }
         }
         else {
-            res.send({
-                status: 'error', message: 'Incorrect Password'
-            })
+            res.send({ status: 'error', message: 'User not exist please contact your admin' })
         }
     }
-    else {
-        res.send({ status: 'error', message: 'User not exist please contact your admin' })
+    catch (err) {
+        console.log('err in login', err)
     }
 
 
 }
-module.exports={
+module.exports = {
     registerUser,
     loginUser,
 }
