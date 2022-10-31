@@ -1,6 +1,6 @@
 const express = require('express')
 const routes = express.Router()
-const { addTeam, deleteTeam, addMember, getlogginPerson_TeamMember, editTeamName, editTeamEmail, uploadImage } = require('../controllers/postController')
+const { addTeam, deleteTeam, addMember, getlogginPerson_TeamMember, editTeamName, editTeamEmail, uploadImage,getUserData,editUserDetails} = require('../controllers/postController')
 // const multer = require('multer')
 
 // const mult = multer({
@@ -17,8 +17,8 @@ routes.post('/editteamemail/:id', editTeamEmail)
 // routes.post('/uploadimage', mult.single('file'), uploadImage)
 
 routes.post('/uploadimage', uploadImage)
-
-
+routes.post('/getloginuser', getUserData)
+routes.post('/edituser/:id', editUserDetails)
 
 
 module.exports = routes

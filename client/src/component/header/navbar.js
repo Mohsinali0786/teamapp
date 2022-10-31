@@ -13,6 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { logout } from "../../store/actions"
 import { useDispatch, useSelector } from "react-redux"
+import Profile from '../modals/profilemodal'
 
 
 export default function MenuAppBar(props) {
@@ -79,7 +80,7 @@ export default function MenuAppBar(props) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}><Profile/></MenuItem>
                 <MenuItem onClick={() => { dispatch(logout) }}>Logout</MenuItem>
               </Menu>
             </div>

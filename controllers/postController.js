@@ -1,6 +1,8 @@
 // const { getTeam } = require('../client/src/utils/helper')
 const { teammodel, usermodel } = require('../models')
 const cloudinary = require('cloudinary')
+const bcrypt = require('bcryptjs')
+
 
 const addTeam = async (req, res) => {
 
@@ -231,10 +233,54 @@ const uploadImage = async (req, res) => {
         })
         console.log(result.url, "result");
         return result.public_id;
-    } catch (error) {
+    }
+     catch (error) {
         console.error('Err in upload', error);
     }
 };
+
+const getUserData=async(req,res)=>{
+    const {email}=req.body
+    console.log('req.body profile',email)
+    try{
+        let user=await usermodel.findOne({email})
+        console.log(user)
+        if(user){
+            res.send({
+                status: 'success',
+                user:user,
+            })
+        }
+    }
+    catch (error) {
+        console.error('Err in upload', error);
+    }
+}
+
+const editUserDetails=async(req,res)=>{
+    const {id}=req.params
+    const {name,email,password}=req.body
+    const salt = await bcrypt.genSalt(10);
+    let bcryptpassword = await bcrypt.hash(password, salt);
+
+    const EditUser=await usermodel.findByIdAndUpdate(id,{
+        name,
+        email,
+        password:bcryptpassword,
+    })
+    if(EditUser){
+        res.send({
+            status:'success',
+            message:'Edit Successfuly',
+        })
+    }
+    else{
+        res.send({
+            status:'error',
+            message:'Data not Edited Try again'
+        })
+    }
+}
 
 module.exports = {
     addTeam,
@@ -244,4 +290,6 @@ module.exports = {
     editTeamName,
     editTeamEmail,
     uploadImage,
+    getUserData,
+    editUserDetails,
 }

@@ -14,7 +14,9 @@ const POST={
     ADDMEMBER:`${postApi}/addmember`,
     GETTEAMBYLOGINUSER:`${postApi}/getmemberbyloginuser`,
     EDITTEAMNAME:`${postApi}/editteamname`,
-    EDITTEAMEMAIL:`${postApi}/editteamemail`
+    EDITTEAMEMAIL:`${postApi}/editteamemail`,
+    GETLOGINUSER:`${postApi}/getloginuser`,
+    EDITLOGINUSER:`${postApi}/edituser`
 }
 const GET={
     GETTEAM:`${getApi}/getteam`,
